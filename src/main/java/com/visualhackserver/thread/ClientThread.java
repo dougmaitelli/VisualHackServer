@@ -21,7 +21,7 @@ public class ClientThread extends Thread {
     @Override
     public void run() {
         try {
-            while (clientStruct.read() != null) {}
+            while (clientStruct.getInputStream().read() != -1) {}
         } catch (IOException ex) {
             ServerThread.getInstance().removeClient(clientStruct);
         }

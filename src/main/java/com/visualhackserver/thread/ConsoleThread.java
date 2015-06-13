@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import com.visualhackserver.client.Client;
-import com.visualhackserver.client.ClientConsole;
+import com.visualhackserver.client.console.ClientConsole;
 
 /**
  *
@@ -46,9 +46,9 @@ public class ConsoleThread extends Thread {
     @Override
     public void run() {
         try {
-            String buffer;
-            while ((buffer = read()) != null) {
-                clientConsole.write(buffer);
+            int buffer;
+            while ((buffer = in.read()) != -1) {
+                clientConsole.write(Character.toString((char) buffer));
             }
         } catch (IOException ex) {
             clientConsole.dispose();
@@ -69,10 +69,6 @@ public class ConsoleThread extends Thread {
 
     public void send(String str) {
         getOutputStream().println(str);
-    }
-
-    public String read() throws IOException {
-        return getInputStream().readLine();
     }
 
     public ClientConsole getConsole() {

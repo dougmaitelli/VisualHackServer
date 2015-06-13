@@ -12,8 +12,8 @@ import org.jdesktop.application.TaskMonitor;
 
 import com.visualhackserver.VisualHackServerApp;
 import com.visualhackserver.client.Client;
-import com.visualhackserver.client.ClientConsole;
 import com.visualhackserver.client.FileDetails;
+import com.visualhackserver.client.console.ClientConsole;
 import com.visualhackserver.thread.FileThread;
 import com.visualhackserver.thread.ServerThread;
 import com.visualhackserver.thread.TransferThread;

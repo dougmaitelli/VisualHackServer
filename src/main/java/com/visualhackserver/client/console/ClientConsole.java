@@ -1,4 +1,4 @@
-package com.visualhackserver.client;
+package com.visualhackserver.client.console;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
+import com.visualhackserver.client.Client;
 import com.visualhackserver.thread.ConsoleThread;
 
 /**
@@ -27,8 +31,9 @@ public class ClientConsole extends JInternalFrame {
 	
 	private Client clientStruct;
     private final ConsoleThread consoleThread;
-    private JTextArea console;
-    private JTextField input;
+    
+    private JScrollPane scroller;
+    private ConsoleTextArea console;
 
     public ClientConsole(ConsoleThread thread, Client client) {
         super(client.getName(), true, true, true, true);
@@ -43,43 +48,16 @@ public class ClientConsole extends JInternalFrame {
         JPanel panel = new JPanel(new BorderLayout());
         c.add(panel, BorderLayout.CENTER);
 
-        console = new JTextArea() {
+        console = new ConsoleTextArea();
+        console.setOnConsoleEnterPressed(new ConsoleTextArea.OnConsoleEnterPressed() {
+			
+			@Override
+			public void onPressed(String command) {
+				consoleThread.send(command);
+			}
+		});
 
-            @Override
-            public void append(String text) {
-                super.append(text);
-                this.setCaretPosition(this.getCaretPosition() + text.length());
-            }
-        };
-        console.setBackground(Color.BLACK);
-        console.setForeground(Color.WHITE);
-        console.setFont(new Font("Lucida Console", Font.PLAIN, 12));
-        console.setLineWrap(true);
-        console.setWrapStyleWord(true);
-        console.setEditable(false);
-
-        input = new JTextField();
-        input.setBackground(Color.BLACK);
-        input.setForeground(Color.WHITE);
-        input.setFont(new Font("Lucida Console", Font.PLAIN, 12));
-        panel.add(input, BorderLayout.SOUTH);
-
-        input.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyPressed(final KeyEvent e) {
-                int key = e.getKeyCode();
-
-                if (key == KeyEvent.VK_ENTER) {
-                    JTextField input = getInput();
-
-                    consoleThread.send(input.getText());
-                    input.setText("");
-                }
-            }
-        });
-
-        JScrollPane scroller = new JScrollPane(console);
+        scroller = new JScrollPane(console);
         scroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         panel.add(scroller, BorderLayout.CENTER);
 
@@ -111,15 +89,8 @@ public class ClientConsole extends JInternalFrame {
         show();
     }
 
-    public JTextArea getConsole() {
-        return console;
-    }
-
     public void write(String str) {
-        getConsole().append(str + "\n");
+        console.appendInput(str);
     }
 
-    public JTextField getInput() {
-        return input;
-    }
 }

@@ -50,10 +50,6 @@ public class Client {
         getOutputStream().println(str);
     }
 
-    public String read() throws IOException {
-        return getInputStream().readLine();
-    }
-
     public void requestConsole() throws IOException {
         ConsoleThread console = new ConsoleThread(this);
         console.start();
