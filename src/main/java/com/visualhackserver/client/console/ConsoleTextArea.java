@@ -107,6 +107,10 @@ public class ConsoleTextArea extends JTextArea {
 	}
 	
 	public void backspace() {
+		if (currentCommand.length() == 0) {
+			return;
+		}
+		
 		currentCommand = currentCommand.substring(0, currentCommand.length() - 1);
 		
 		refresh();
