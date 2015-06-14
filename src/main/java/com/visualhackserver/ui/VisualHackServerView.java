@@ -105,17 +105,6 @@ public class VisualHackServerView extends FrameView {
         FileList.setModel(new DefaultListModel<TransferThread>());
     }
 
-    @Action
-    public void showAboutBox() {
-        if (aboutBox == null) {
-            JFrame mainFrame = VisualHackServerApp.getApplication().getMainFrame();
-            aboutBox = new VisualHackServerAboutBox(mainFrame);
-            aboutBox.setLocationRelativeTo(mainFrame);
-        }
-        VisualHackServerApp.getApplication().show(aboutBox);
-    }
-
-
     private void initComponents() {
         mainPanel = new javax.swing.JPanel();
         ConsolePane = new javax.swing.JDesktopPane();
@@ -202,15 +191,6 @@ public class VisualHackServerView extends FrameView {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
-
-        helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
-        helpMenu.setName("helpMenu"); // NOI18N
-
-        aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutMenuItem.setName("aboutMenuItem"); // NOI18N
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
 
         statusPanel.setName("statusPanel"); // NOI18N
 
