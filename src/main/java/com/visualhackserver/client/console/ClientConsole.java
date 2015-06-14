@@ -64,7 +64,9 @@ public class ClientConsole extends JInternalFrame {
         addInternalFrameListener(new InternalFrameListener() {
 
             public void internalFrameClosing(InternalFrameEvent evt) {
-                //clientStruct.setActive(false);
+            	if (!consoleThread.isInterrupted()) {
+            		consoleThread.interrupt();
+            	}
             }
 
             public void internalFrameOpened(InternalFrameEvent e) {

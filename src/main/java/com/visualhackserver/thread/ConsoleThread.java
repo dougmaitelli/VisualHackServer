@@ -51,8 +51,21 @@ public class ConsoleThread extends Thread {
                 clientConsole.write(Character.toString((char) buffer));
             }
         } catch (IOException ex) {
-            clientConsole.dispose();
+            interrupt();
         }
+    }
+    
+    @Override
+    public void interrupt() {
+    	try {
+			consoleSocket.close();
+			
+			clientConsole.setEnabled(false);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+    	
+    	super.interrupt();
     }
     
     public Socket getSocket() {
