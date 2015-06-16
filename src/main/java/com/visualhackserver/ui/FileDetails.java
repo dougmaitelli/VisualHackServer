@@ -1,4 +1,4 @@
-package com.visualhackserver.client;
+package com.visualhackserver.ui;
 
 import com.visualhackserver.VisualHackServerApp;
 import com.visualhackserver.thread.TransferThread;

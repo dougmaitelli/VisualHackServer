@@ -1,33 +1,30 @@
 package com.visualhackserver.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.jdesktop.application.Action;
+import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+import org.jdesktop.application.FrameView;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
-import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 
 import com.visualhackserver.VisualHackServerApp;
 import com.visualhackserver.client.Client;
-import com.visualhackserver.client.FileDetails;
 import com.visualhackserver.client.console.ClientConsole;
 import com.visualhackserver.thread.FileThread;
 import com.visualhackserver.thread.ServerThread;
 import com.visualhackserver.thread.TransferThread;
 import com.visualhackserver.ui.list.ClientListRenderer;
 import com.visualhackserver.ui.list.FileListRenderer;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.DefaultListModel;
-import javax.swing.Timer;
-import javax.swing.Icon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 
 /**
  * The application's main frame.
