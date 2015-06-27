@@ -84,6 +84,16 @@ public class ConsoleTextArea extends JTextArea {
 		}
 	}
 	
+	@Override
+	public void append(String str) {
+		super.append(str);
+		
+		try {
+			setCaretPosition(getDocument().getLength());
+		} catch (Exception ex) {
+		}
+	}
+	
 	public void appendInput(String text) {
 		inputBuffer.append(text);
 		
