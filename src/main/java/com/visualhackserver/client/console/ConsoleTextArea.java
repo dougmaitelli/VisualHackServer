@@ -47,6 +47,10 @@ public class ConsoleTextArea extends JTextArea {
 				char keyChar = arg0.getKeyChar();
 				
 				switch (arg0.getKeyCode()) {
+					case KeyEvent.VK_CONTROL:
+						break;
+					case KeyEvent.VK_SHIFT:
+						break;
 					case KeyEvent.VK_ENTER:
 						console.pressEnter();
 						break;
@@ -54,7 +58,7 @@ public class ConsoleTextArea extends JTextArea {
 						console.backspace();
 						break;
 					default:
-						if (!Character.isIdentifierIgnorable(keyChar)) {
+						if (Character.isDefined(keyChar)) {
 							console.typeCommand(Character.toString(keyChar));
 						}
 				}
