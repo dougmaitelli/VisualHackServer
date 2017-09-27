@@ -16,6 +16,6 @@ deploy:
   skip_cleanup: true
   file:
     - "README.md"
-    - "target/$FINALNAME.jar"
+    - "target/$FINALNAME-jar-with-dependencies.jar"
   on:
     tags: true
