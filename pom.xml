@@ -5,6 +5,10 @@
 	<artifactId>VisualHackServer</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
+	
+	<properties>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+	</properties>
 
 	<dependencies>
 		<dependency>
