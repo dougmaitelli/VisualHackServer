@@ -4,7 +4,6 @@
 	<groupId>VisualHackServer</groupId>
 	<artifactId>VisualHackServer</artifactId>
 	<version>1.0</version>
-	<packaging>jar</packaging>
 	
 	<properties>
 		<finalName>${project.artifactId}-${project.version}</finalName>
@@ -37,6 +36,14 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+    					<target>1.8</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
