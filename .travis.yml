@@ -1,0 +1,21 @@
+language: java
+sudo: false # faster builds
+
+jdk:
+- oraclejdk8
+
+before_script:
+- export GIT_TAG=$TRAVIS_BRANCH.$TRAVIS_BUILD_NUMBER
+- export FINALNAME=VisualHackServer-$GIT_TAG
+
+script: mvn clean -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID package -DfinalName=$FINALNAME
+
+deploy:
+  provider: releases
+  api_key: $GITPERM
+  skip_cleanup: true
+  file:
+    - "README.md"
+    - "target/$FINALNAME.jar"
+  on:
+    tags: true
